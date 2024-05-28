@@ -37,7 +37,7 @@
         </div>
         <div class="bg-white shadow w-full rounded-lg">
           <div class="px-5 py-2 pt-4">
-            <a href="ProductsServlet"
+            <a href="products"
                class="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
               <span class="inline-block mr-2">Manage Product</span>
             </a>
@@ -58,7 +58,14 @@
           </div>
 
           <div class="px-5 py-2">
-            <a  href="inventoryreport"
+            <a href="inventoryreport"
+               class="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
+              <span class="inline-block mr-2">Manage Shelves</span>
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="inventoryreport"
                 class="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
               <span class="inline-block mr-2">Inventory Reports</span>
             </a>
