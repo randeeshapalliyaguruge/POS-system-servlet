@@ -6,11 +6,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(name = "UpdateProductServlet", value = "/UpdateProductServlet")
-public class UpdateProductServlet extends HttpServlet {
+@WebServlet(name = "DeleteProductServlet", value = "/DeleteProductServlet")
+public class DeleteProductServlet extends HttpServlet {
+
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-        response.sendRedirect("update_product.jsp");
+        response.sendRedirect("delete_product.jsp");
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
