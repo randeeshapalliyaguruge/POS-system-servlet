@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SYOS Menu - CB009991</title>
+  <title>Products</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
@@ -37,30 +37,37 @@
         </div>
         <div class="bg-white shadow w-full rounded-lg">
           <div class="px-5 py-2 pt-4">
-            <a href="/ProductsServlet"
+            <a href="/AddProductServlet"
                class="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
-              <span class="inline-block mr-2">Manage Product</span>
+              <span class="inline-block mr-2">Add New Product</span>
             </a>
           </div>
 
           <div class="px-5 py-2">
             <a href="addtostock"
                class="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
-              <span class="inline-block mr-2">Manage Stocks</span>
+              <span class="inline-block mr-2">Update a Product</span>
+            </a>
+          </div>
+
+          <div class="px-5 py-2">
+            <a href="addtostock"
+               class="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
+              <span class="inline-block mr-2">View All Products</span>
             </a>
           </div>
 
           <div class="px-5 py-2">
             <a href="takefromstock"
                class="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
-              <span class="inline-block mr-2">Create Bill</span>
+              <span class="inline-block mr-2">Delete a Product</span>
             </a>
           </div>
 
-          <div class="px-5 py-2">
-            <a  href="inventoryreport"
-                class="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
-              <span class="inline-block mr-2">Inventory Reports</span>
+          <div class="px-5 py-2 pb-4">
+            <a href="/"
+               class="transition duration-200 bg-red-400 hover:bg-red-600 focus:bg-red-700 focus:shadow-sm focus:ring-4 focus:ring-red-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
+              <span class="inline-block mr-2">Back</span>
             </a>
           </div>
         </div>
