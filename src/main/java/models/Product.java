@@ -13,7 +13,8 @@ public class Product extends DALModel {
         this.fillable = new String[]{"name", "price"};
     }
 
-    public void all() {
+    public ResultSet all() {
+
         // SQL query to select all products
         String sql = "SELECT * FROM " + getTable();
 
@@ -21,13 +22,13 @@ public class Product extends DALModel {
             Connection conn = Database.getInstance().getConnection();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                System.out.println(rs.getInt("id") + "\t" +
-                        rs.getString("name") + "\t" +
-                        rs.getDouble("price"));
-            }
+
+            return rs;
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+
+        return null;
     }
 }

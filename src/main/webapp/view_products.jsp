@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.SQLException" %><%--
   Created by IntelliJ IDEA.
   User: Randeesha
   Date: 28-May-24
@@ -60,13 +61,27 @@
                                     </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-200 bg-white">
-                                    <tr class="divide-x divide-gray-200">
-                                        <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm font-medium text-gray-900 sm:pl-0">1</td>
-                                        <td class="whitespace-nowrap p-4 text-sm text-gray-500">Lindsay Walton</td>
-                                        <td class="whitespace-nowrap p-4 text-sm text-gray-500">2500</td>
-                                    </tr>
 
-                                    <!-- More people... -->
+                                        <%
+                                            ResultSet resultSet = (ResultSet) request.getAttribute("products");
+                                            try {
+                                                while (resultSet.next()) {
+                                        %>
+
+                                            <tr class="divide-x divide-gray-200">
+                                                <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm font-medium text-gray-900 sm:pl-0"><%=resultSet.getInt("id")%></td>
+                                                <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=resultSet.getString("name")%></td>
+                                                <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=resultSet.getDouble("price")%></td>
+                                            </tr>
+
+                                        <%
+                                                }
+
+                                            } catch (SQLException e) {
+                                                e.printStackTrace();
+                                            }
+                                        %>
+
                                     </tbody>
                                 </table>
                             </div>
