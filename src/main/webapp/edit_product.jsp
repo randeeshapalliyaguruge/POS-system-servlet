@@ -44,17 +44,14 @@
                 </div>
 
                 <!--
-                    todo: send to a new edit product servlet with a dopost function to get the existing product details with the passed id from the form,
+                    todo: send to a new edit product servlet with a doPost function to get the existing product details with the passed id from the form,
                     todo: then, get the new updated data from the form
                     todo: update it with the new data
                     todo: save
                     todo: return to the products.jsp page
                  -->
 
-                <form action="#" method="POST">
-
-
-
+                <form action="edit_product" method="POST">
                     <div class="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
                         <div class="px-5 py-7">
 

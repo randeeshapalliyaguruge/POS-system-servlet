@@ -26,7 +26,6 @@ public class DALModel {
                 if (!fillable) {
                     throw new IllegalArgumentException("The key " + key + " is not fillable.");
                 }
-
             }
         }
 
@@ -70,6 +69,10 @@ public class DALModel {
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+
+        } finally {
+            Database.closeConnection();
+            System.out.println("Connection closed for transaction.");
         }
 
         return null;
@@ -123,6 +126,10 @@ public class DALModel {
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+
+        } finally {
+            Database.closeConnection();
+            System.out.println("Connection closed for transaction.");
         }
 
         return null;
@@ -132,10 +139,16 @@ public class DALModel {
         String sql = "DELETE FROM " + getTable() + " WHERE id = ?";
         try (Connection conn = Database.getInstance().getConnection();
              java.sql.PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+
+        } finally {
+            Database.closeConnection();
+            System.out.println("Connection closed for transaction.");
         }
     }
 
@@ -161,6 +174,10 @@ public class DALModel {
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+
+        } finally {
+            Database.closeConnection();
+            System.out.println("Connection closed for transaction.");
         }
 
         return null;
@@ -183,11 +200,16 @@ public class DALModel {
                 }
                 return result;
             }
+
         } catch (SQLException e) {
             throw new SQLException("Error executing SQL query: " + e.getMessage());
+
+        } finally {
+            Database.closeConnection();
+            System.out.println("Connection closed for transaction.");
         }
+
         return null;
     }
-
 
 }
