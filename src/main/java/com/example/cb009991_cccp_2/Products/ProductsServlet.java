@@ -18,6 +18,10 @@ public class ProductsServlet extends HttpServlet {
 
     }
 
+    public void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+
     public void destroy() {
     }
 }
