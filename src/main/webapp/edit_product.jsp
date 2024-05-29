@@ -1,14 +1,14 @@
-<%--
+<%@ page import="java.util.HashMap" %><%--
   Created by IntelliJ IDEA.
   User: Randeesha
   Date: 28-May-24
-  Time: 8:06 PM
+  Time: 7:30 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Update Product</title>
+    <title>Add New Product</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
@@ -39,13 +39,41 @@
         <div class="min-h-screen bg-gray-100 flex flex-col pt-4">
             <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
                 <div class="text-center mb-6">
-                    <p class="mt-2 text-3xl font-extrabold text-gray-900 sm:text-4xl">Update Product Details</p>
+                    <h2 class="text-base font-semibold tracking-wider text-indigo-600 uppercase">Update Product</h2>
+                    <p class="mt-2 text-3xl font-extrabold text-gray-900 sm:text-4xl">Update Product</p>
                 </div>
-                <form action="update_product" method="POST">
+
+                <!--
+                    todo: send to a new edit product servlet with a dopost function to get the existing product details with the passed id from the form,
+                    todo: then, get the new updated data from the form
+                    todo: update it with the new data
+                    todo: save
+                    todo: return to the products.jsp page
+                 -->
+
+                <form action="#" method="POST">
+
+
+
                     <div class="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
                         <div class="px-5 py-7">
-                            <label class="font-semibold text-sm text-gray-600 pb-1 block">Enter Product ID</label>
-                            <input type="text" name="product_id" id="product_id" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+
+                            <% HashMap<String, Object> product = (HashMap<String, Object>) request.getAttribute("product"); %>
+
+                            <input class="hidden"
+                                      type="text"
+                                      value="<%= product.get("id") %>"
+                                      name="id" id="id" />
+
+                            <label class="font-semibold text-sm text-gray-600 pb-1 block">Product Name</label>
+                            <input type="text"
+                                   value="<%= product.get("name") %>"
+                                   name="name" id="name" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+
+                            <label class="font-semibold text-sm text-gray-600 pb-1 block">Item Price</label>
+                            <input type="text"
+                                   value="<%= product.get("price") %>"
+                                   name="price" id="price" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
                             <button type="submit" class="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
                                 <span class="inline-block mr-2">Update Product</span>
