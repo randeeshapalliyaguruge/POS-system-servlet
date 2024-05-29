@@ -41,7 +41,7 @@
                 <div class="text-center mb-6">
                     <p class="mt-2 text-3xl font-extrabold text-gray-900 sm:text-4xl">Delete a Product</p>
                 </div>
-                <form action="newitem" method="POST">
+                <form action="delete_product" method="POST">
                     <div class="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
                         <div class="px-5 py-7">
                             <label class="font-semibold text-sm text-gray-600 pb-1 block">Enter Product ID</label>

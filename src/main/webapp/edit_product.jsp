@@ -1,10 +1,11 @@
-<%@ page import="java.util.HashMap" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Randeesha
   Date: 28-May-24
   Time: 7:30 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="java.util.HashMap" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>

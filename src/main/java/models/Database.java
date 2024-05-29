@@ -26,7 +26,7 @@ public class Database {
         }
     }
 
-    
+
     public static synchronized Database getInstance() {
 
         if (instance == null) {
