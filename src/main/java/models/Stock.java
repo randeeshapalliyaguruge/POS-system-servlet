@@ -16,23 +16,21 @@ public class Stock extends DALModel {
     }
 
     //sql query to show the stock
-    public void allStock() {
+    public ResultSet allStock() {
         String sql = "SELECT * FROM " + getTable();
 
         try {
             Connection conn = Database.getInstance().getConnection();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                System.out.println(rs.getInt("id") + "\t" +
-                        rs.getInt("product_id") + "\t" +
-                        rs.getInt("quantity") + "\t" +
-                        rs.getString("purchase_date")+ "\t" +
-                        rs.getString("expire_date"));
-            }
+
+            return rs;
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+
+        return null;
     }
 
     public List<HashMap<String, Object>> getAllByProductId(int productId) {

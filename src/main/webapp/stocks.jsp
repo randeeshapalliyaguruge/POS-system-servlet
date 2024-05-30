@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Products</title>
+  <title>Stocks</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
