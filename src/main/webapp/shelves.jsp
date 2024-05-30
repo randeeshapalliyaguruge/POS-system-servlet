@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Stocks</title>
+  <title>Manage Shelves</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
@@ -33,34 +33,34 @@
     <div class="min-h-screen bg-gray-100 flex flex-col pt-4">
       <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
         <div class="text-center mb-6">
-          <p class="mt-2 text-3xl font-extrabold text-gray-900 sm:text-4xl">Manage Stocks</p>
+          <p class="mt-2 text-3xl font-extrabold text-gray-900 sm:text-4xl">Manage Shelves</p>
         </div>
         <div class="bg-white shadow w-full rounded-lg">
           <div class="px-5 py-2 pt-4">
-            <a href="add_stock"
+            <a href="add_shelve"
                class="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
-              <span class="inline-block mr-2">Add New Stock</span>
+              <span class="inline-block mr-2">Add New Shelve</span>
             </a>
           </div>
 
           <div class="px-5 py-2">
-            <a href="update_stock"
+            <a href="update_shelve"
                class="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
-              <span class="inline-block mr-2">Update Stock</span>
+              <span class="inline-block mr-2">Update Shelve</span>
             </a>
           </div>
 
           <div class="px-5 py-2">
-            <a href="view_stocks"
+            <a href="view_shelves"
                class="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
-              <span class="inline-block mr-2">View All Stocks</span>
+              <span class="inline-block mr-2">View All Shelves</span>
             </a>
           </div>
 
           <div class="px-5 py-2">
-            <a href="delete_stock"
+            <a href="delete_shelve"
                class="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
-              <span class="inline-block mr-2">Delete Stock</span>
+              <span class="inline-block mr-2">Delete Shelve</span>
             </a>
           </div>
 
