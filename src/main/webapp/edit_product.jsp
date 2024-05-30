@@ -40,7 +40,6 @@
         <div class="min-h-screen bg-gray-100 flex flex-col pt-4">
             <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
                 <div class="text-center mb-6">
-                    <h2 class="text-base font-semibold tracking-wider text-indigo-600 uppercase">Update Product</h2>
                     <p class="mt-2 text-3xl font-extrabold text-gray-900 sm:text-4xl">Update Product</p>
                 </div>
 
