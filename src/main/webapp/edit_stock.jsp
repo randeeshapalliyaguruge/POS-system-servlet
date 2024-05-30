@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Add New Product</title>
+    <title>Edit Stock Details</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
@@ -40,39 +40,44 @@
         <div class="min-h-screen bg-gray-100 flex flex-col pt-4">
             <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
                 <div class="text-center mb-6">
-                    <h2 class="text-base font-semibold tracking-wider text-indigo-600 uppercase">Update Product</h2>
-                    <p class="mt-2 text-3xl font-extrabold text-gray-900 sm:text-4xl">Update Product</p>
+                    <h2 class="text-base font-semibold tracking-wider text-indigo-600 uppercase">Update Stock</h2>
+                    <p class="mt-2 text-3xl font-extrabold text-gray-900 sm:text-4xl">Update Stock</p>
                 </div>
 
-                <form action="edit_product" method="POST">
+                <form action="edit_stock" method="POST">
                     <div class="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
                         <div class="px-5 pt-6 pb-5">
 
-                            <% HashMap<String, Object> product = (HashMap<String, Object>) request.getAttribute("product"); %>
+                            <% HashMap<String, Object> stock = (HashMap<String, Object>) request.getAttribute("stock"); %>
 
                             <input class="hidden"
                                       type="text"
-                                      value="<%= product.get("id") %>"
+                                      value="<%= stock.get("id") %>"
                                       name="id" id="id" />
 
-                            <label class="font-semibold text-sm text-gray-600 pb-1 block">Product Name</label>
+                            <label class="font-semibold text-sm text-gray-600 pb-1 block">Quantity</label>
                             <input type="text"
-                                   value="<%= product.get("name") %>"
-                                   name="name" id="name" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+                                   value="<%= stock.get("quantity") %>"
+                                   name="quantity" id="quantity" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
-                            <label class="font-semibold text-sm text-gray-600 pb-1 block">Item Price</label>
-                            <input type="text"
-                                   value="<%= product.get("price") %>"
-                                   name="price" id="price" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+                            <label class="font-semibold text-sm text-gray-600 pb-1 block">Purchase Date</label>
+                            <input type="date"
+                                   value="<%= stock.get("purchase_date") %>"
+                                   name="purchase_date" id="purchase_date" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+
+                            <label class="font-semibold text-sm text-gray-600 pb-1 block">Expire Date</label>
+                            <input type="date"
+                                   value="<%= stock.get("expire_date") %>"
+                                   name="expire_date" id="expire_date" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
                             <button type="submit" class="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
-                                <span class="inline-block mr-2">Update Product</span>
+                                <span class="inline-block mr-2">Update Stock</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 inline-block">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                 </svg>
                             </button>
                             <div class="py-2">
-                                <a href="update_product"
+                                <a href="update_stock"
                                    class="transition duration-200 bg-red-400 hover:bg-red-600 focus:bg-red-700 focus:shadow-sm focus:ring-4 focus:ring-red-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
                                     <span class="inline-block mr-2">Back</span>
                                 </a>
