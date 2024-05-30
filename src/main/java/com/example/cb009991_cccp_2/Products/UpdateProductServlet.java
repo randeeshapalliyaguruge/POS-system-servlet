@@ -29,7 +29,4 @@ public class UpdateProductServlet extends HttpServlet {
         request.setAttribute("product", productToUpdate);
         request.getRequestDispatcher("edit_product.jsp").forward(request, response);
     }
-
-    public void destroy() {
-    }
 }

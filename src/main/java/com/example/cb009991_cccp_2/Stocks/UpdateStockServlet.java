@@ -28,11 +28,4 @@ public class UpdateStockServlet extends HttpServlet {
         request.setAttribute("stock", stockToUpdate);
         request.getRequestDispatcher("edit_stock.jsp").forward(request, response);
     }
-
-    public void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
-    public void destroy() {
-    }
 }

@@ -23,7 +23,4 @@ public class DeleteProductServlet extends HttpServlet {
 
         response.sendRedirect("products.jsp");
     }
-
-    public void destroy() {
-    }
 }

@@ -47,11 +47,4 @@ public class AddStockServlet extends HttpServlet {
         out.println("</body></html>");
 
     }
-
-    public void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
-    public void destroy() {
-    }
 }

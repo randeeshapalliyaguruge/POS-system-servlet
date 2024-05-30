@@ -40,7 +40,4 @@ public class AddProductServlet extends HttpServlet {
         out.println("<p>Price: " + productModel.get("price") + "</p>");
         out.println("</body></html>");
     }
-
-    public void destroy() {
-    }
 }

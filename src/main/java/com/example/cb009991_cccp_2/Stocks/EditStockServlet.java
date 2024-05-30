@@ -42,11 +42,4 @@ public class EditStockServlet extends HttpServlet {
 
         response.sendRedirect("stocks.jsp");
     }
-
-    public void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
-    public void destroy() {
-    }
 }
