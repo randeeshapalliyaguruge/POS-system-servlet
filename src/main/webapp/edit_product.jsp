@@ -46,7 +46,7 @@
 
                 <form action="edit_product" method="POST">
                     <div class="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
-                        <div class="px-5 py-7">
+                        <div class="px-5 pt-6 pb-5">
 
                             <% HashMap<String, Object> product = (HashMap<String, Object>) request.getAttribute("product"); %>
 
@@ -71,6 +71,12 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                 </svg>
                             </button>
+                            <div class="py-2">
+                                <a href="update_product"
+                                   class="transition duration-200 bg-red-400 hover:bg-red-600 focus:bg-red-700 focus:shadow-sm focus:ring-4 focus:ring-red-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
+                                    <span class="inline-block mr-2">Back</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </form>
