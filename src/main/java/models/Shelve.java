@@ -15,22 +15,21 @@ public class Shelve extends DALModel {
     }
 
     //sql query to show the shelves
-    public void allShelves() {
+    public ResultSet allShelves() {
         String sql = "SELECT * FROM " + getTable();
 
         try {
             Connection conn = Database.getInstance().getConnection();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                System.out.println(rs.getInt("id") + "\t" +
-                        rs.getInt("product_id") + "\t" +
-                        rs.getInt("stock_id") + "\t" +
-                        rs.getInt("quantity"));
-            }
+
+            return rs;
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+
+        return null;
     }
 
     // Method to retrieve shelf data by product ID

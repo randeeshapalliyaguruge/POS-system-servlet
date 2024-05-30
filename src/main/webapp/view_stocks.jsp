@@ -43,7 +43,7 @@
                     <div class="sm:flex sm:items-center">
                         <div class="sm:flex-auto">
                             <h1 class="text-base font-semibold leading-6 text-gray-900">Stock List</h1>
-                            <p class="my-2 text-sm text-gray-700">A list of all the stocks in th system including their id, name, price.</p>
+                            <p class="my-2 text-sm text-gray-700">A list of all the stocks in the system including their Id, Product id, Quantity, Purchase Date, Expire Date.</p>
                             <a href="stocks">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
@@ -77,7 +77,7 @@
 
                                             <tr class="divide-x divide-gray-200">
                                                 <td class="whitespace-nowrap  p-4 text-sm font-medium text-gray-900"><%=resultSet.getInt("id")%></td>
-                                                <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=resultSet.getString("product_id")%></td>
+                                                <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=resultSet.getInt("product_id")%></td>
                                                 <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=resultSet.getInt("quantity")%></td>
                                                 <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=resultSet.getString("purchase_date")%></td>
                                                 <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=resultSet.getString("expire_date")%></td>
