@@ -55,12 +55,12 @@
                                 <table class="min-w-full divide-y divide-gray-300">
                                     <thead>
                                     <tr class="divide-x divide-gray-200">
-                                        <th scope="col" class="py-3.5 pl-4 pr-4 text-left text-sm font-semibold text-gray-900 sm:pl-0">ID</th>
+                                        <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-90">ID</th>
                                         <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-900">Product Name</th>
                                         <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-900">Price</th>
                                     </tr>
                                     </thead>
-                                    <tbody class="divide-y divide-gray-200 bg-white">
+                                    <tbody class="divide-y divide-gray-300 bg-white">
 
                                         <%
                                             ResultSet resultSet = (ResultSet) request.getAttribute("products");
@@ -69,9 +69,9 @@
                                         %>
 
                                             <tr class="divide-x divide-gray-200">
-                                                <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm font-medium text-gray-900 sm:pl-0"><%=resultSet.getInt("id")%></td>
+                                                <td class="whitespace-nowrap  p-4 text-sm font-medium text-gray-900"><%=resultSet.getInt("id")%></td>
                                                 <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=resultSet.getString("name")%></td>
-                                                <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=resultSet.getDouble("price")%></td>
+                                                <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=resultSet.getDouble("price")%>/=</td>
                                             </tr>
 
                                         <%
