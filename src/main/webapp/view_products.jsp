@@ -23,10 +23,10 @@
                             <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                                 <div class="flex flex-shrink-0 items-center">
                                     <a href="/">
-                                        <img class="block h-8 w-auto lg:hidden" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+                                        <img class="block h-32 w-auto lg:hidden mt-2" src="logo.png" alt="Logo">
                                     </a>
                                     <a href="/">
-                                        <img class="hidden h-8 w-auto lg:block" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+                                        <img class="hidden h-32 w-auto lg:block mt-2" src="logo.png" alt="Logo">
                                     </a>
                                 </div>
                             </div>
