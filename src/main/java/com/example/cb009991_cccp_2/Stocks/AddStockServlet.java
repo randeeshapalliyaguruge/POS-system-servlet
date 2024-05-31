@@ -25,26 +25,36 @@ public class AddStockServlet extends HttpServlet {
         String purchaseDate = request.getParameter("purchase_date");
         String expiryDate = request.getParameter("expire_date");
 
-        // Create a HashMap to store stock details
-        HashMap<String, Object> data = new HashMap<>();
-        data.put("product_id", String.valueOf(productId));
-        data.put("quantity", String.valueOf(quantity));
-        data.put("purchase_date", purchaseDate);
-        data.put("expire_date", expiryDate);
+        HashMap<String, Object> productData = product.get(productId);
+        if (productData != null) {
+            // Create a HashMap to store stock details
+            HashMap<String, Object> data = new HashMap<>();
+            data.put("product_id", String.valueOf(productId));
+            data.put("quantity", String.valueOf(quantity));
+            data.put("purchase_date", purchaseDate);
+            data.put("expire_date", expiryDate);
 
-        managers.StockManager stockManager = new managers.StockManager();
-        HashMap<String, Object> stockModel = stockManager.createStock(data);
+            managers.StockManager stockManager = new managers.StockManager();
+            HashMap<String, Object> stockModel = stockManager.createStock(data);
 
-        // Send response back to client
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>Stock added successfully:</h1>");
-        out.println("<p>Product ID: " + stockModel.get("product_id") + "</p>");
-        out.println("<p>Quantity: " + stockModel.get("quantity") + "</p>");
-        out.println("<p>Purchase Date: " + stockModel.get("purchase_date") + "</p>");
-        out.println("<p>Expiry Date: " + stockModel.get("expire_date") + "</p>");
-        out.println("</body></html>");
+            // Send response back to client
+            response.setContentType("text/html");
+            PrintWriter out = response.getWriter();
+            out.println("<html><body>");
+            out.println("<h1>Stock added successfully:</h1>");
+            out.println("<p>Product ID: " + stockModel.get("product_id") + "</p>");
+            out.println("<p>Quantity: " + stockModel.get("quantity") + "</p>");
+            out.println("<p>Purchase Date: " + stockModel.get("purchase_date") + "</p>");
+            out.println("<p>Expiry Date: " + stockModel.get("expire_date") + "</p>");
+            out.println("</body></html>");
 
+            } else {
+            // Send response back to client
+            response.setContentType("text/html");
+            PrintWriter out = response.getWriter();
+            out.println("<html><body>");
+            out.println("<h1>Product not found</h1>");
+            out.println("</body></html>");
+        }
     }
 }
