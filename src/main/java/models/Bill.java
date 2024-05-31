@@ -12,7 +12,7 @@ public class Bill extends DALModel {
         this.fillable = new String[]{"created_date", "serial_number", "total_price", "cash_tendered", "discount", "change"};
     }
 
-    private int getLastSerialNumber() {
+    public int getLastSerialNumber() {
         String sql = "SELECT MAX(serial_number) AS max_serial_number FROM " + getTable();
         try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -79,6 +79,7 @@ public class Bill extends DALModel {
     }
 
     public static void generateBill(HashMap<String, Object> product, int quantity) {
+
         if (product != null) {
             int productId = (int) product.get("id");
             Shelve shelveModel = new Shelve();
