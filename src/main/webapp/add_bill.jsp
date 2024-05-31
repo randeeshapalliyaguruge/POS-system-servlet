@@ -54,6 +54,12 @@
                                     completed = (Boolean) completedObj;
                                 }
 
+                                double totalBill = 0.0;
+                                Object totalBillObj = request.getAttribute("totalBill");
+                                if (totalBillObj instanceof Double) {
+                                    totalBill = (Double) totalBillObj;
+                                }
+
                                 // Get the "num_of_items" attribute from the request and ensure it is an Integer
                                 int numOfItems = 0;
                                 Object numOfItemsObj = request.getAttribute("num_of_items");
@@ -93,6 +99,7 @@
                             <!-- Hidden fields for servlet -->
                             <input type="hidden" name="num_of_items" id="num_of_items" value="<%= numOfItems %>" />
                             <input type="hidden" name="completed" id="completed" value="<%= !completed && numOfItems == 0 %>" />
+                            <input type="hidden" name="totalBill" id="totalBill" value="<%= totalBill %>" />
 
                             <label class="font-semibold text-sm text-gray-600 pb-1 block">Product ID</label>
                             <input type="text" name="product_id" id="product_id" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
@@ -109,6 +116,7 @@
                             <!-- Hidden fields for servlet -->
                             <input type="hidden" name="num_of_items" id="num_of_items" value="<%= numOfItems %>" />
                             <input type="hidden" name="completed" id="completed" value="<%= completed %>" />
+                            <input type="hidden" name="totalBill" id="totalBill" value="<%= totalBill %>" />
 
                             <label class="font-semibold text-sm text-gray-600 pb-1 block">Discount Percentage (%)</label>
                             <input type="text" name="discount" id="discount" placeholder="%" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />

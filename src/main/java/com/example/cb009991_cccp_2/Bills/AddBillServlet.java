@@ -35,33 +35,8 @@ public class AddBillServlet extends HttpServlet {
         boolean first_request = Boolean.parseBoolean(request.getParameter("first_request"));
 
         if (completed) {
-            double totalBill = 0;
 
-            Bill billModel = new Bill();
-            int bill_id = billModel.getLastSerialNumber();
-
-            String sql = "SELECT * FROM bill_products WHERE bill_id = ?";
-
-            try (Connection conn = Database.getInstance().getConnection();
-                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                pstmt.setInt(1, bill_id);
-                ResultSet rs = pstmt.executeQuery();
-
-                while (rs.next()) {
-                    int product_id = rs.getInt("product_id");
-                    int quantity = rs.getInt("quantity");
-
-                    Product product = new Product();
-                    HashMap<String, Object> productData = product.get(product_id);
-
-                    double price = Double.parseDouble(productData.get("price").toString());
-                    totalBill += price * quantity;
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                Database.getInstance().closeConnection();
-            }
+            double totalBill = Double.parseDouble(request.getParameter("totalBill"));
 
             System.out.println("totalBill: " + totalBill);
 
@@ -108,6 +83,13 @@ public class AddBillServlet extends HttpServlet {
                 if (productData != null) {
                     Bill.generateBill(productData, quantity);
 
+                    // get the request parameter double called total_bill
+                    double totalBill = Double.parseDouble(request.getParameter("totalBill"));
+
+                    double price = Double.parseDouble(productData.get("price").toString());
+
+                    totalBill += price * quantity;
+
                     num_of_items -= 1;
 
                     completed = num_of_items == 0;
@@ -115,6 +97,10 @@ public class AddBillServlet extends HttpServlet {
                     response.setContentType("text/html");
                     request.setAttribute("num_of_items", num_of_items);
                     request.setAttribute("completed", completed);
+
+                    // sends the total bill to the jsp
+                    request.setAttribute("totalBill", totalBill);
+
                     request.getRequestDispatcher("add_bill.jsp").forward(request, response);
 
                 } else {
