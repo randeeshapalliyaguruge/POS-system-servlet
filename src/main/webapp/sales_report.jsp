@@ -80,7 +80,7 @@
                                 <table class="min-w-full divide-y divide-gray-300">
                                     <thead>
                                     <tr class="divide-x divide-gray-200">
-                                        <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-90">Product ID</th>
+                                        <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-900">Product ID</th>
                                         <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-900">Name</th>
                                         <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-900">Total Quantity</th>
                                         <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-900">Total Revenue</th>
@@ -90,7 +90,8 @@
 
                                     <%
                                         List<Map<String, Object>> salesData = (List<Map<String, Object>>) request.getAttribute("salesData");
-                                        for (Map<String, Object> row : salesData) {
+                                        if(salesData != null && !salesData.isEmpty()) {
+                                            for (Map<String, Object> row : salesData) {
                                     %>
 
                                     <tr class="divide-x divide-gray-200">
@@ -98,6 +99,15 @@
                                         <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=row.get("name")%></td>
                                         <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=row.get("total_quantity")%></td>
                                         <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=row.get("total_revenue")%>/=</td>
+                                    </tr>
+
+                                    <%
+                                        }
+                                    } else {
+                                    %>
+
+                                    <tr>
+                                        <td colspan="4" class="text-center text-lg font-semibold text-gray-900">No records available on the given date</td>
                                     </tr>
 
                                     <%
