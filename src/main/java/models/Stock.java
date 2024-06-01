@@ -52,4 +52,20 @@ public class Stock extends DALModel {
         }
         return stocks;
     }
+
+    // Retrieve product name by product ID
+    public String getProductName(int productId) {
+        String sql = "SELECT name FROM products WHERE id = " + productId;
+        try {
+            Connection conn = Database.getInstance().getConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                return rs.getString("name");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

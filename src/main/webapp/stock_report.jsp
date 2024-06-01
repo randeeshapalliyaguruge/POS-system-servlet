@@ -5,13 +5,13 @@
   Created by IntelliJ IDEA.
   User: Randeesha
   Date: 01-Jun-24
-  Time: 10:12 AM
+  Time: 1:10 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Bill Report</title>
+    <title>Stock Report</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
@@ -53,7 +53,7 @@
                             </a>
                         </div>
 <%--                        <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">--%>
-<%--                            <a href="add_product" type="button" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add Product</a>--%>
+<%--                            <a href="add_product" type="button" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add Stock</a>--%>
 <%--                        </div>--%>
                     </div>
                     <div class="mt-8 flow-root">
@@ -63,34 +63,40 @@
                                     <thead>
                                     <tr class="divide-x divide-gray-200">
                                         <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-90">ID</th>
-                                        <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-900">Serial Number</th>
-                                        <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-900">Billing Date</th>
-                                        <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-900">Total Price</th>
-                                        <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-900">Discount</th>
-                                        <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-900">Cash Tendered</th>
-                                        <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-900">Change</th>
+                                        <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-900">Product ID</th>
+                                        <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-900">Product Name</th>
+                                        <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-900">Quantity</th>
+                                        <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-900">Purchase Date</th>
+                                        <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-900">Expire Date</th>
                                     </tr>
                                     </thead>
+
                                     <tbody class="divide-y divide-gray-300 bg-white">
-                                    
-                                        <%
-                                            List<HashMap<String, Object>> bills = (List<HashMap<String, Object>>) request.getAttribute("bills");
-                                            for (HashMap<String, Object> bill : bills) {
-                                        %>
 
-                                        <tr class="divide-x divide-gray-200">
-                                            <td class="whitespace-nowrap  p-4 text-sm font-medium text-gray-900"><%=bill.get("id")%></td>
-                                            <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=bill.get("serial_number")%></td>
-                                            <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=bill.get("created_date")%></td>
-                                            <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=bill.get("total_price")%>/=</td>
-                                            <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=bill.get("discount")%>/=</td>
-                                            <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=bill.get("cash_tendered")%>/=</td>
-                                            <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=bill.get("change")%>/=</td>
-                                        </tr>
+                                    <%
+                                        ResultSet resultSet = (ResultSet) request.getAttribute("stocks");
+                                        HashMap<Integer, String> productNames = (HashMap<Integer, String>) request.getAttribute("productNames");
+                                        try {
+                                            while (resultSet.next()) {
+                                                int productId = resultSet.getInt("product_id");
+                                                String productName = productNames.get(productId);
+                                    %>
 
-                                        <%
+                                    <tr class="divide-x divide-gray-200">
+                                        <td class="whitespace-nowrap  p-4 text-sm font-medium text-gray-900"><%= resultSet.getInt("id") %></td>
+                                        <td class="whitespace-nowrap  p-4 text-sm font-medium text-gray-900"><%= resultSet.getString("product_id") %></td>
+                                        <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%= productName %></td>
+                                        <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%= resultSet.getInt("quantity") %></td>
+                                        <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%= resultSet.getString("purchase_date") %></td>
+                                        <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%= resultSet.getString("expire_date") %></td>
+                                    </tr>
+
+                                    <%
                                             }
-                                        %>
+                                        } catch (SQLException e) {
+                                            e.printStackTrace();
+                                        }
+                                    %>
 
                                     </tbody>
                                 </table>
