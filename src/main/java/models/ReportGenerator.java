@@ -1,9 +1,6 @@
 package models;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -50,16 +47,24 @@ public class ReportGenerator extends DALModel {
         }
     }
 
-    public void generateReorderReport() throws SQLException {
+    public ResultSet generateReorderReport() {
         String sql = "SELECT p.id, p.name, s.quantity " +
                 "FROM stocks s " +
                 "JOIN products p ON s.product_id = p.id " +
                 "WHERE s.quantity < 50";
-        PreparedStatement stmt = this.connection.prepareStatement(sql);
-        ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            System.out.println(rs.getString("id") + ", " + rs.getString("name") + ", " + ", " + rs.getInt("quantity"));
+
+        try {
+            Connection conn = Database.getInstance().getConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            return rs;
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
+
+        return null;
     }
 
     public void generateStockReport() throws SQLException {
