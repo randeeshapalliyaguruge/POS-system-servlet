@@ -44,8 +44,8 @@
                 <div class="p-12 px-16">
                     <div class="sm:flex sm:items-center">
                         <div class="sm:flex-auto">
-                            <h1 class="text-base font-semibold leading-6 text-gray-900">Bill Report</h1>
-                            <p class="my-2 text-sm text-gray-700">Bill Report in the system including all the bill information.</p>
+                            <h1 class="text-base font-semibold leading-6 text-gray-900">Stock Report</h1>
+                            <p class="my-2 text-sm text-gray-700">Stock Report in the system including all the stock information.</p>
                             <a href="reports">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />

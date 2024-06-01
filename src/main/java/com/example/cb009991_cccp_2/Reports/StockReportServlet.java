@@ -31,7 +31,6 @@ public class StockReportServlet extends HttpServlet {
         }
 
         request.setAttribute("stocks", stock.allStock());
-        System.out.println(productNames);
         request.setAttribute("productNames", productNames);
         request.getRequestDispatcher("stock_report.jsp").forward(request, response);
 
