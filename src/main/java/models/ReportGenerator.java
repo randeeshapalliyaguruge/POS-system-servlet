@@ -35,16 +35,22 @@ public class ReportGenerator extends DALModel {
         return results;
     }
 
-    public void generateReshelvingReport() throws SQLException {
+    public List<Map<String, Object>> generateReshelvingReport() throws SQLException {
         String sql = "SELECT p.id, p.name, s.quantity " +
                 "FROM shelves s " +
                 "JOIN products p ON s.product_id = p.id " +
-                "WHERE s.quantity <= 0";
+                "WHERE s.quantity <= 5";
         PreparedStatement stmt = this.connection.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
+        List<Map<String, Object>> results = new ArrayList<>();
         while (rs.next()) {
-            System.out.println(rs.getString("id") + ", " + rs.getString("name") + ", " + ", " + rs.getInt("quantity"));
+            Map<String, Object> row = new HashMap<>();
+            row.put("id", rs.getString("id"));
+            row.put("name", rs.getString("name"));
+            row.put("quantity", rs.getInt("quantity"));
+            results.add(row);
         }
+        return results;
     }
 
     public ResultSet generateReorderReport() {
