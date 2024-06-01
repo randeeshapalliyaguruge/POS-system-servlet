@@ -77,8 +77,8 @@
                                 }
                             %>
 
-                            <p>Completed: <%= request.getAttribute("completed") %></p>
-                            <p>num of items: <%= request.getAttribute("num_of_items") %></p>
+<%--                            <p>Completed: <%= request.getAttribute("completed") %></p>--%>
+<%--                            <p>num of items: <%= request.getAttribute("num_of_items") %></p>--%>
 
                             <!-- When entering the number of spins -->
                             <% if (!completed && numOfItems == 0) { %>
@@ -133,7 +133,7 @@
                                 </svg>
                             </button>
                             <div class="py-2">
-                                <a href="shelves"
+                                <a href="/"
                                    class="transition duration-200 bg-red-400 hover:bg-red-600 focus:bg-red-700 focus:shadow-sm focus:ring-4 focus:ring-red-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
                                     <span class="inline-block mr-2">Back</span>
                                 </a>
