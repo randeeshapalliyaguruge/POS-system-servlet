@@ -2,7 +2,9 @@ package models;
 
 import java.sql.*;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Bill extends DALModel {
 
@@ -120,5 +122,26 @@ public class Bill extends DALModel {
         } else {
             System.out.println("Product does not exist.");
         }
+    }
+
+    public List<HashMap<String, Object>> all() {
+        List<HashMap<String, Object>> rows = new ArrayList<>();
+        String sql = "SELECT * FROM " + getTable();
+        try (Connection conn = Database.getInstance().getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnCount = rsmd.getColumnCount();
+            while (rs.next()) {
+                HashMap<String, Object> row = new HashMap<>();
+                for (int i = 1; i <= columnCount; i++) {
+                    row.put(rsmd.getColumnName(i), rs.getObject(i));
+                }
+                rows.add(row);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rows;
     }
 }
