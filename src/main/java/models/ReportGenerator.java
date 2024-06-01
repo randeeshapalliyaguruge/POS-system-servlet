@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ReportGenerator extends DALModel {
 
@@ -12,7 +16,7 @@ public class ReportGenerator extends DALModel {
     public ReportGenerator() {
         this.connection = Database.getInstance().getConnection();
     }
-    public void generateSalesReport(String date) throws SQLException {
+    public List<Map<String, Object>> generateSalesReport(String date) throws SQLException {
         String sql = "SELECT b.id, bp.product_id, p.name, p.id, SUM(bp.product_quantity) as total_quantity, SUM(bp.total_cost) as total_revenue " +
                 "FROM bills b " +
                 "JOIN bill_products bp ON b.id = bp.bill_id " +
@@ -21,16 +25,17 @@ public class ReportGenerator extends DALModel {
                 "GROUP BY bp.product_id";
         PreparedStatement stmt = this.connection.prepareStatement(sql);
         stmt.setString(1, date);
-        System.out.println("Executing SQL query: " + stmt.toString()); // print the SQL query
         ResultSet rs = stmt.executeQuery();
-        boolean hasResults = false;
+        List<Map<String, Object>> results = new ArrayList<>();
         while (rs.next()) {
-            hasResults = true;
-            System.out.println(rs.getString("product_id") + ", " + rs.getString("name") + ", " + ", " + rs.getInt("total_quantity") + ", " + rs.getDouble("total_revenue"));
+            Map<String, Object> row = new HashMap<>();
+            row.put("product_id", rs.getString("product_id"));
+            row.put("name", rs.getString("name"));
+            row.put("total_quantity", rs.getInt("total_quantity"));
+            row.put("total_revenue", rs.getDouble("total_revenue"));
+            results.add(row);
         }
-        if (!hasResults) {
-            System.out.println("No sales data for the given date: " + date);
-        }
+        return results;
     }
 
     public void generateReshelvingReport() throws SQLException {
