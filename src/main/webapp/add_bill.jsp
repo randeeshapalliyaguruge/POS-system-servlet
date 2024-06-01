@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Add New Shelve</title>
+    <title>Create Bill</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
