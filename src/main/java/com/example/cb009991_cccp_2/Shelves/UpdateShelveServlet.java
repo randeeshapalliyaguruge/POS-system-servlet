@@ -6,10 +6,11 @@ import java.util.HashMap;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import models.Shelve;
+import facade.StoreManagementFacade;
 
 @WebServlet(name = "UpdateShelveServlet", value = "/update_shelve")
 public class UpdateShelveServlet extends HttpServlet {
+    private StoreManagementFacade facade = new StoreManagementFacade();
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
@@ -18,13 +19,9 @@ public class UpdateShelveServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("shelve_id"));
+        HashMap<String, Object> shelveData = facade.getShelve(id);
 
-        Shelve shelve = new Shelve();
-
-        // Get the shelve with the given ID
-        HashMap<String, Object> shelveToUpdate = shelve.get(id);
-
-        request.setAttribute("shelve", shelveToUpdate);
+        request.setAttribute("shelve", shelveData);
         request.getRequestDispatcher("edit_shelve.jsp").forward(request, response);
     }
 }

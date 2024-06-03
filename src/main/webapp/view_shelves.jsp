@@ -1,9 +1,9 @@
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.SQLException" %><%--
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Randeesha
   Date: 28-May-24
-  Time: 9:18 PM
+  Time: 10:32 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -67,28 +67,21 @@
                                     </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-300 bg-white">
-
-                                        <%
-                                            ResultSet resultSet = (ResultSet) request.getAttribute("shelves");
-                                            try {
-                                                while (resultSet.next()) {
-                                        %>
-
-                                            <tr class="divide-x divide-gray-200">
-                                                <td class="whitespace-nowrap  p-4 text-sm font-medium text-gray-900"><%=resultSet.getInt("id")%></td>
-                                                <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=resultSet.getInt("product_id")%></td>
-                                                <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=resultSet.getInt("stock_id")%></td>
-                                                <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=resultSet.getInt("quantity")%></td>
-                                            </tr>
-
-                                        <%
-                                                }
-
-                                            } catch (SQLException e) {
-                                                e.printStackTrace();
+                                    <%
+                                        List<HashMap<String, Object>> shelves = (List<HashMap<String, Object>>) request.getAttribute("shelves");
+                                        if (shelves != null) {
+                                            for (HashMap<String, Object> shelve : shelves) {
+                                    %>
+                                    <tr class="divide-x divide-gray-200">
+                                        <td class="whitespace-nowrap p-4 text-sm font-medium text-gray-900"><%= shelve.get("id") %></td>
+                                        <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%= shelve.get("product_id") %></td>
+                                        <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%= shelve.get("stock_id") %></td>
+                                        <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%= shelve.get("quantity") %></td>
+                                    </tr>
+                                    <%
                                             }
-                                        %>
-
+                                        }
+                                    %>
                                     </tbody>
                                 </table>
                             </div>

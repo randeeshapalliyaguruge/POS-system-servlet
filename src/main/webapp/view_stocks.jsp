@@ -1,5 +1,5 @@
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.SQLException" %><%--
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Randeesha
   Date: 28-May-24
@@ -68,29 +68,22 @@
                                     </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-300 bg-white">
-
-                                        <%
-                                            ResultSet resultSet = (ResultSet) request.getAttribute("stocks");
-                                            try {
-                                                while (resultSet.next()) {
-                                        %>
-
-                                            <tr class="divide-x divide-gray-200">
-                                                <td class="whitespace-nowrap  p-4 text-sm font-medium text-gray-900"><%=resultSet.getInt("id")%></td>
-                                                <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=resultSet.getInt("product_id")%></td>
-                                                <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=resultSet.getInt("quantity")%></td>
-                                                <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=resultSet.getString("purchase_date")%></td>
-                                                <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=resultSet.getString("expire_date")%></td>
-                                            </tr>
-
-                                        <%
-                                                }
-
-                                            } catch (SQLException e) {
-                                                e.printStackTrace();
+                                    <%
+                                        List<HashMap<String, Object>> stocks = (List<HashMap<String, Object>>) request.getAttribute("stocks");
+                                        if (stocks != null) {
+                                            for (HashMap<String, Object> stock : stocks) {
+                                    %>
+                                    <tr class="divide-x divide-gray-200">
+                                        <td class="whitespace-nowrap p-4 text-sm font-medium text-gray-900"><%= stock.get("id") %></td>
+                                        <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%= stock.get("product_id") %></td>
+                                        <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%= stock.get("quantity") %></td>
+                                        <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%= stock.get("purchase_date") %></td>
+                                        <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%= stock.get("expire_date") %></td>
+                                    </tr>
+                                    <%
                                             }
-                                        %>
-
+                                        }
+                                    %>
                                     </tbody>
                                 </table>
                             </div>

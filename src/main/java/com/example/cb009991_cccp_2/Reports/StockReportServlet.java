@@ -1,39 +1,29 @@
 package com.example.cb009991_cccp_2.Reports;
 
 import java.io.*;
-import java.sql.ResultSet;
-import java.util.HashMap;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
+import facade.StoreManagementFacade;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import models.Stock;
 
 @WebServlet(name = "StockReportServlet", value = "/stock_report")
 public class StockReportServlet extends HttpServlet {
+    private StoreManagementFacade facade = new StoreManagementFacade();
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
-        Stock stock = new Stock();
-        ResultSet rs = stock.allStock();
-        HashMap<Integer, String> productNames = new HashMap<>();
-
         try {
-            while (rs.next()) {
-                int productId = rs.getInt("product_id");
-                if (!productNames.containsKey(productId)) {
-                    productNames.put(productId, stock.getProductName(productId));
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            List<Map<String, Object>> stockReport = facade.generateStockReport();
+            request.setAttribute("stockReport", stockReport);
+            request.getRequestDispatcher("stock_report.jsp").forward(request, response);
+        } catch (SQLException e) {
+            throw new ServletException(e);
         }
-
-        request.setAttribute("stocks", stock.allStock());
-        request.setAttribute("productNames", productNames);
-        request.getRequestDispatcher("stock_report.jsp").forward(request, response);
-
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

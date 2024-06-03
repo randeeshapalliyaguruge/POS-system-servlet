@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Map;
 
 public class ReportGenerator extends DALModel {
-
     private Connection connection;
 
     public ReportGenerator() {
         this.connection = Database.getInstance().getConnection();
     }
+
     public List<Map<String, Object>> generateSalesReport(String date) throws SQLException {
         String sql = "SELECT b.id, bp.product_id, p.name, p.id, SUM(bp.product_quantity) as total_quantity, SUM(bp.total_cost) as total_revenue " +
                 "FROM bills b " +
@@ -23,16 +23,7 @@ public class ReportGenerator extends DALModel {
         PreparedStatement stmt = this.connection.prepareStatement(sql);
         stmt.setString(1, date);
         ResultSet rs = stmt.executeQuery();
-        List<Map<String, Object>> results = new ArrayList<>();
-        while (rs.next()) {
-            Map<String, Object> row = new HashMap<>();
-            row.put("product_id", rs.getString("product_id"));
-            row.put("name", rs.getString("name"));
-            row.put("total_quantity", rs.getInt("total_quantity"));
-            row.put("total_revenue", rs.getDouble("total_revenue"));
-            results.add(row);
-        }
-        return results;
+        return convertResultSetToList(rs);
     }
 
     public List<Map<String, Object>> generateReshelvingReport() throws SQLException {
@@ -42,65 +33,51 @@ public class ReportGenerator extends DALModel {
                 "WHERE s.quantity <= 5";
         PreparedStatement stmt = this.connection.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
-        List<Map<String, Object>> results = new ArrayList<>();
-        while (rs.next()) {
-            Map<String, Object> row = new HashMap<>();
-            row.put("id", rs.getString("id"));
-            row.put("name", rs.getString("name"));
-            row.put("quantity", rs.getInt("quantity"));
-            results.add(row);
-        }
-        return results;
+        return convertResultSetToList(rs);
     }
 
-    public ResultSet generateReorderReport() {
+    public List<Map<String, Object>> generateReorderReport() throws SQLException {
         String sql = "SELECT p.id, p.name, s.quantity " +
                 "FROM stocks s " +
                 "JOIN products p ON s.product_id = p.id " +
                 "WHERE s.quantity < 50";
-
-        try {
-            Connection conn = Database.getInstance().getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-
-            return rs;
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-        return null;
+        PreparedStatement stmt = this.connection.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+        return convertResultSetToList(rs);
     }
 
-    public void generateStockReport() throws SQLException {
+    public List<Map<String, Object>> generateStockReport() throws SQLException {
         String sql = "SELECT s.id, p.id as product_id, p.name, s.quantity, s.purchase_date, s.expire_date " +
                 "FROM stocks s " +
                 "JOIN products p ON s.product_id = p.id";
         PreparedStatement stmt = this.connection.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            System.out.println(rs.getString("id") + ", " +
-                    rs.getString("product_id") + ", " +
-                    rs.getString("name") + ", " +
-                    rs.getInt("quantity") + ", " +
-                    rs.getString("purchase_date") + ", " +
-                    rs.getString("expire_date"));
-        }
+        return convertResultSetToList(rs);
     }
 
-    public void generateBillReport() throws SQLException {
+    public List<Map<String, Object>> generateBillReport() throws SQLException {
         String sql = "SELECT * FROM bills";
         PreparedStatement stmt = this.connection.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            System.out.println(rs.getString("id") + ", " +
-                    rs.getString("created_date") + ", " +
-                    rs.getString("serial_number") + ", " +
-                    rs.getDouble("discount") + ", " +
-                    rs.getDouble("total_price") + ", " +
-                    rs.getDouble("cash_tendered") + ", " +
-                    rs.getDouble("change"));
+        return convertResultSetToList(rs);
+    }
+
+    // Utility method to convert ResultSet to List<Map<String, Object>>
+    public List<Map<String, Object>> convertResultSetToList(ResultSet rs) {
+        List<Map<String, Object>> list = new ArrayList<>();
+        try {
+            ResultSetMetaData metaData = rs.getMetaData();
+            int columnCount = metaData.getColumnCount();
+            while (rs.next()) {
+                Map<String, Object> row = new HashMap<>();
+                for (int i = 1; i <= columnCount; i++) {
+                    row.put(metaData.getColumnName(i), rs.getObject(i));
+                }
+                list.add(row);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return list;
     }
 }

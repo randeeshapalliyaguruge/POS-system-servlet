@@ -1,5 +1,5 @@
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.List" %>
 <%--
   Created by IntelliJ IDEA.
   User: Randeesha
@@ -64,27 +64,20 @@
                                     </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-300 bg-white">
-
-                                        <%
-                                            ResultSet resultSet = (ResultSet) request.getAttribute("reorderStockLevel");
-                                            try {
-                                                while (resultSet.next()) {
-                                        %>
-
-                                            <tr class="divide-x divide-gray-200">
-                                                <td class="whitespace-nowrap  p-4 text-sm font-medium text-gray-900"><%=resultSet.getInt("id")%></td>
-                                                <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=resultSet.getString("name")%></td>
-                                                <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%=resultSet.getInt("quantity")%></td>
-                                            </tr>
-
-                                        <%
-                                                }
-
-                                            } catch (SQLException e) {
-                                                e.printStackTrace();
+                                    <%
+                                        List<HashMap<String, Object>> reorderStockLevel = (List<HashMap<String, Object>>) request.getAttribute("reorderStockLevel");
+                                        if (reorderStockLevel != null) {
+                                            for (HashMap<String, Object> stock : reorderStockLevel) {
+                                    %>
+                                    <tr class="divide-x divide-gray-200">
+                                        <td class="whitespace-nowrap p-4 text-sm font-medium text-gray-900"><%= stock.get("id") %></td>
+                                        <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%= stock.get("name") %></td>
+                                        <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%= stock.get("quantity") %></td>
+                                    </tr>
+                                    <%
                                             }
-                                        %>
-
+                                        }
+                                    %>
                                     </tbody>
                                 </table>
                             </div>

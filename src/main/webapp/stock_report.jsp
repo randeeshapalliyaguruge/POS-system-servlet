@@ -1,7 +1,8 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.util.HashMap" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %><%--
   Created by IntelliJ IDEA.
   User: Randeesha
   Date: 01-Jun-24
@@ -72,32 +73,23 @@
                                     </thead>
 
                                     <tbody class="divide-y divide-gray-300 bg-white">
-
                                     <%
-                                        ResultSet resultSet = (ResultSet) request.getAttribute("stocks");
-                                        HashMap<Integer, String> productNames = (HashMap<Integer, String>) request.getAttribute("productNames");
-                                        try {
-                                            while (resultSet.next()) {
-                                                int productId = resultSet.getInt("product_id");
-                                                String productName = productNames.get(productId);
+                                        List<Map<String, Object>> stockReport = (List<Map<String, Object>>) request.getAttribute("stockReport");
+                                        if (stockReport != null) {
+                                            for (Map<String, Object> stock : stockReport) {
                                     %>
-
                                     <tr class="divide-x divide-gray-200">
-                                        <td class="whitespace-nowrap  p-4 text-sm font-medium text-gray-900"><%= resultSet.getInt("id") %></td>
-                                        <td class="whitespace-nowrap  p-4 text-sm font-medium text-gray-900"><%= resultSet.getString("product_id") %></td>
-                                        <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%= productName %></td>
-                                        <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%= resultSet.getInt("quantity") %></td>
-                                        <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%= resultSet.getString("purchase_date") %></td>
-                                        <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%= resultSet.getString("expire_date") %></td>
+                                        <td class="whitespace-nowrap p-4 text-sm font-medium text-gray-900"><%= stock.get("id") %></td>
+                                        <td class="whitespace-nowrap p-4 text-sm font-medium text-gray-900"><%= stock.get("product_id") %></td>
+                                        <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%= stock.get("product_name") %></td>
+                                        <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%= stock.get("quantity") %></td>
+                                        <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%= stock.get("purchase_date") %></td>
+                                        <td class="whitespace-nowrap p-4 text-sm text-gray-500"><%= stock.get("expire_date") %></td>
                                     </tr>
-
                                     <%
                                             }
-                                        } catch (SQLException e) {
-                                            e.printStackTrace();
                                         }
                                     %>
-
                                     </tbody>
                                 </table>
                             </div>
