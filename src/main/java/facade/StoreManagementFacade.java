@@ -3,6 +3,9 @@ package facade;
 import command.*;
 import factories.ManagerFactory;
 
+import java.sql.ResultSet;
+import java.util.HashMap;
+
 public class StoreManagementFacade {
     private Command manageProductsCommand;
     private Command manageStocksCommand;
@@ -36,5 +39,26 @@ public class StoreManagementFacade {
 
     public void generateReports() {
         generateReportsCommand.execute();
+    }
+
+    // Additional methods for servlet integration
+    public void addProduct(String name, double price) {
+        ((ProductManagerCommand) manageProductsCommand).addProduct(name, price);
+    }
+
+    public void updateProduct(int id, String name, double price) {
+        ((ProductManagerCommand) manageProductsCommand).updateProduct(id, name, price);
+    }
+
+    public void deleteProduct(int id) {
+        ((ProductManagerCommand) manageProductsCommand).deleteProduct(id);
+    }
+
+    public ResultSet viewAllProducts() {
+        return ((ProductManagerCommand) manageProductsCommand).viewAllProducts();
+    }
+
+    public HashMap<String, Object> getProduct(int id) {
+        return ((ProductManagerCommand) manageProductsCommand).getProduct(id);
     }
 }

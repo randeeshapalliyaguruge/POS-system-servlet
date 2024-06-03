@@ -3,6 +3,7 @@ package managers;
 import factories.Manager;
 import models.Product;
 
+import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -125,5 +126,38 @@ public class ProductManager implements Manager {
                     System.out.println("Invalid option. Please try again.");
             }
         }
+    }
+
+    public void addProduct(String name, double price) {
+        Product product = new Product();
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("name", name);
+        data.put("price", price);
+        product.create(data);
+    }
+
+    public void updateProduct(int id, String name, double price) {
+        Product product = new Product();
+        HashMap<String, Object> productToUpdate = product.get(id);
+        if (productToUpdate != null) {
+            productToUpdate.put("name", name);
+            productToUpdate.put("price", price);
+            product.update(id, productToUpdate);
+        }
+    }
+
+    public void deleteProduct(int id) {
+        Product product = new Product();
+        product.delete(id);
+    }
+
+    public ResultSet viewAllProducts() {
+        Product product = new Product();
+        return product.all();
+    }
+
+    public HashMap<String, Object> getProduct(int id) {
+        Product product = new Product();
+        return product.get(id);
     }
 }
