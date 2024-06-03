@@ -70,10 +70,4 @@ public class BillManager implements Manager {
         billData.put("created_date", java.time.LocalDate.now().toString()); // current date
         bill.create(billData);
     }
-
-    // Create a bill junit test
-    public HashMap<String, Object> createBill(HashMap<String, Object> data) {
-        Bill bill = new Bill();
-        return bill.create(data);
-    }
 }

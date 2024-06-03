@@ -126,15 +126,4 @@ public class ProductManager implements Manager {
             }
         }
     }
-
-    //junit test
-    public HashMap<String, Object> addProduct(HashMap<String, Object> data) {
-        Product product = new Product();
-        return product.create(data);
-    }
-
-    public HashMap<String, Object> updateProduct(int id, HashMap<String, Object> updateData) {
-        Product product = new Product();
-        return product.update(id, updateData);
-    }
 }

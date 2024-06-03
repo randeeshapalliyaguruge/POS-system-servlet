@@ -7,6 +7,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import models.Product;
+import models.Stock;
 
 @WebServlet(name = "AddStockServlet", value = "/add_stock")
 public class AddStockServlet extends HttpServlet {
@@ -27,6 +28,9 @@ public class AddStockServlet extends HttpServlet {
 
         HashMap<String, Object> productData = product.get(productId);
         if (productData != null) {
+
+            Stock stock = new Stock();
+
             // Create a HashMap to store stock details
             HashMap<String, Object> data = new HashMap<>();
             data.put("product_id", String.valueOf(productId));
@@ -34,8 +38,8 @@ public class AddStockServlet extends HttpServlet {
             data.put("purchase_date", purchaseDate);
             data.put("expire_date", expiryDate);
 
-            managers.StockManager stockManager = new managers.StockManager();
-            HashMap<String, Object> stockModel = stockManager.createStock(data);
+            // Create a Stock instance and call the create method
+            HashMap<String, Object> stockModel = stock.create(data);
 
             // Send response back to client
             response.setContentType("text/html");
@@ -48,7 +52,8 @@ public class AddStockServlet extends HttpServlet {
             out.println("<p>Expiry Date: " + stockModel.get("expire_date") + "</p>");
             out.println("</body></html>");
 
-            } else {
+        }
+        else {
             // Send response back to client
             response.setContentType("text/html");
             PrintWriter out = response.getWriter();

@@ -131,20 +131,4 @@ public class StockManager implements Manager {
             }
         }
     }
-
-    public HashMap<String, Object> createStock(HashMap<String, Object> data) {
-        Stock stock = new Stock();
-        return stock.create(data);
-    }
-
-    public HashMap<String, Object> updateStock(HashMap<String, Object> data) {
-        Stock stock = new Stock();
-        return stock.update((int) data.get("id"), data);
-    }
-
-    public HashMap<String, Object> deleteStock(HashMap<String, Object> data) {
-        Stock stock = new Stock();
-        stock.delete((int) data.get("id"));
-        return data;
-    }
 }

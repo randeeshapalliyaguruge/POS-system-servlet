@@ -6,6 +6,7 @@ import java.util.HashMap;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import models.Product;
 
 @WebServlet(name = "AddProductServlet", value = "/add_product")
 public class AddProductServlet extends HttpServlet {
@@ -21,15 +22,14 @@ public class AddProductServlet extends HttpServlet {
         String name = request.getParameter("name");
         double price = Double.parseDouble(request.getParameter("price"));
 
+        Product product = new Product();
         // Create a HashMap to store product details
         HashMap<String, Object> data = new HashMap<>();
         data.put("name", name);
         data.put("price", price);
 
-        // Create an instance of ProductManager and call the addProduct method
-        managers.ProductManager productManager = new managers.ProductManager();
-
-        HashMap<String, Object> productModel = productManager.addProduct(data);
+        // Create a Product instance and call the create method
+        HashMap<String, Object> productModel = product.create(data);
 
         // Send response back to client
         response.setContentType("text/html");
