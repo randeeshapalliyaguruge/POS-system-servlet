@@ -47,12 +47,26 @@ public class ReportGenerator extends DALModel {
     }
 
     public List<Map<String, Object>> generateStockReport() throws SQLException {
-        String sql = "SELECT s.id, p.id as product_id, p.name, s.quantity, s.purchase_date, s.expire_date " +
+        List<Map<String, Object>> stockReport = new ArrayList<>();
+        String sql = "SELECT s.id, s.product_id, p.name as product_name, s.quantity, s.purchase_date, s.expire_date " +
                 "FROM stocks s " +
                 "JOIN products p ON s.product_id = p.id";
-        PreparedStatement stmt = this.connection.prepareStatement(sql);
-        ResultSet rs = stmt.executeQuery();
-        return convertResultSetToList(rs);
+
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                Map<String, Object> row = new HashMap<>();
+                row.put("id", rs.getInt("id"));
+                row.put("product_id", rs.getInt("product_id"));
+                row.put("product_name", rs.getString("product_name"));
+                row.put("quantity", rs.getInt("quantity"));
+                row.put("purchase_date", rs.getString("purchase_date"));
+                row.put("expire_date", rs.getString("expire_date"));
+                stockReport.add(row);
+            }
+        }
+
+        return stockReport;
     }
 
     public List<Map<String, Object>> generateBillReport() throws SQLException {
