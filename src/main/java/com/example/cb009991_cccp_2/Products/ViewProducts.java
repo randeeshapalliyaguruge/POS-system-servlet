@@ -1,7 +1,6 @@
 package com.example.cb009991_cccp_2.Products;
 
 import java.io.*;
-import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.List;
 
